@@ -24,6 +24,7 @@ export default function DeudasPage() {
       <div className="md:col-span-1">
         <ClientesList
             clientes={clientes}
+            selectedId={selected} 
             onSelect={setSelected}
             onReload={loadClientes} 
         />

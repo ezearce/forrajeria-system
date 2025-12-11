@@ -7,10 +7,12 @@ export type Cliente = { id: number; nombre: string; telefono?: string; movimient
 
 export function ClientesList({
   clientes,
+  selectedId,
   onSelect,
   onReload,
 }: {
   clientes: Cliente[];
+  selectedId: number | null;
   onSelect: (id: number) => void;
   onReload: () => void; // función que recarga clientes desde DeudasPage
 }) {
@@ -42,12 +44,14 @@ export function ClientesList({
             0
           );
 
+          const isSelected = selectedId === c.id; // <-- comparar
+
           return (
             <li
               key={c.id}
               onClick={() => onSelect(c.id)}
-              className="border rounded p-3 cursor-pointer hover:bg-slate-100 flex justify-between items-center"
-            >
+              className={`border rounded p-3 cursor-pointer flex justify-between items-center 
+                hover:bg-slate-100 ${isSelected ? "bg-emerald-100 border-emerald-400" : ""}`}            >
               <div>
                 <span className="font-medium">{c.nombre}</span>
                 {c.telefono && <span className="text-sm text-slate-500 ml-2">({c.telefono})</span>}
