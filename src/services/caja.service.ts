@@ -49,3 +49,9 @@ export async function cerrarCajaAuto() {
   if (!res.ok) throw new Error("Error cerrando caja");
   return res.json();
 }
+
+export async function getCajaMovimientosDelDia() {
+  const movimientos: any[] = await getCajaMovimientos();
+  const today = new Date().toISOString().slice(0, 10);
+  return movimientos.filter(m => new Date(m.fecha).toISOString().slice(0,10) === today);
+}
