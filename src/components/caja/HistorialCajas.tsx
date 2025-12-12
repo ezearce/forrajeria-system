@@ -16,6 +16,17 @@ export function HistorialCajas({ refresh }: { refresh: number }) {
     setItems(data);
   }
 
+  function formatFecha(fecha: string) {
+    return new Date(fecha).toLocaleString("es-AR", {
+      timeZone: "America/Argentina/Buenos_Aires",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+
   return (
     <div className="bg-white shadow rounded-md p-4 space-y-3">
       <h2 className="text-lg font-semibold">Historial de cajas</h2>
@@ -26,7 +37,8 @@ export function HistorialCajas({ refresh }: { refresh: number }) {
             className="flex justify-between cursor-pointer"
             onClick={() => setOpenId(openId === c.id ? null : c.id)}
           >
-            <span>{c.fecha}</span>
+            <span>{formatFecha(c.fecha)}</span>
+
             <span className="font-bold text-slate-700">
               ${Number(c.saldoDia).toLocaleString("es-AR")}
             </span>

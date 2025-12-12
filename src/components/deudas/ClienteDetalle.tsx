@@ -88,11 +88,30 @@ export function ClienteDetalle({ clienteId, onMovimientosChange }: { clienteId: 
               .sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime()) // ordenar más reciente primero
               .map((m) => (
                 <li key={m.id} className="border rounded p-3 flex justify-between items-center">
-                  <div>
-                    <span className="font-medium">{m.tipo === "deuda" ? "Deuda" : "Pago"}</span>
-                    {m.descripcion && <span className="text-sm text-slate-500 ml-2">({m.descripcion})</span>}
+                  <div className="flex flex-col">
+                    <span className="font-medium">
+                      {m.tipo === "deuda" ? "Deuda" : "Pago"}
+                    </span>
+                    {m.descripcion && (
+                      <span className="text-sm text-slate-500">({m.descripcion})</span>
+                    )}
+                    {/* Fecha del movimiento */}
+                    <span className="text-xs text-slate-400">
+                      {new Date(m.fecha).toLocaleString("es-AR", {
+                        timeZone: "America/Argentina/Buenos_Aires",
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </span>
                   </div>
-                  <span className={`${m.tipo === "deuda" ? "text-red-600" : "text-emerald-700"} font-semibold`}>
+                  <span
+                    className={`${
+                      m.tipo === "deuda" ? "text-red-600" : "text-emerald-700"
+                    } font-semibold`}
+                  >
                     {m.tipo === "deuda" ? "-" : "+"}${Number(m.monto).toLocaleString()}
                   </span>
                 </li>
