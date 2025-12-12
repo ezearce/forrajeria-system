@@ -53,5 +53,6 @@ model CierreCaja {
   totalEgresos  Decimal
   saldoDia      Decimal
   observaciones String?
+  movimientos   Json? 
 }
 

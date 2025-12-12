@@ -32,20 +32,23 @@ export async function getHistorialCajas() {
 }
 
 export async function cerrarCajaAuto() {
-  // Construye los totales desde movimientos y manda POST a /api/cierres
-  const { totalIngresos, totalEgresos, total } = await getCajaDelDia();
+  const { movimientos, totalIngresos, totalEgresos, total } = await getCajaDelDia();
+
   const payload = {
     fecha: new Date().toISOString().slice(0,10),
     totalIngresos,
     totalEgresos,
     saldoDia: total,
-    observaciones: null
+    observaciones: null,
+    movimientos,   // ← NUEVO
   };
+
   const res = await fetch("/api/cierres", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
+
   if (!res.ok) throw new Error("Error cerrando caja");
   return res.json();
 }

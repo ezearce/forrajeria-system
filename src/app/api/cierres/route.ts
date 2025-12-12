@@ -19,6 +19,7 @@ export async function POST(req: Request) {
       totalEgresos: data.totalEgresos,
       saldoDia: data.saldoDia,
       observaciones: data.observaciones ?? null,
+      movimientos: data.movimientos ?? [],
     },
   });
 
