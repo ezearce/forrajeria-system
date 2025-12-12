@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import { getHistorialCajas } from "@/services/caja.service";
 
-export function HistorialCajas() {
+export function HistorialCajas({ refresh }: { refresh: number }) {
   const [items, setItems] = useState([]);
   const [openId, setOpenId] = useState<number | null>(null);
 
   useEffect(() => {
     load();
-  }, []);
+  }, [refresh]);
 
   async function load() {
     const data = await getHistorialCajas();

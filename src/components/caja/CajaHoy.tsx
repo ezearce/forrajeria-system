@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { getCajaDelDia, registrarMovimiento, cerrarCajaAuto, getCajaMovimientosDelDia } from "@/services/caja.service";
 
-export function CajaHoy() {
+export function CajaHoy({ onCerrarCaja }: { onCerrarCaja: () => void }) {
+
   const [caja, setCaja] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [monto, setMonto] = useState("");
@@ -33,6 +34,7 @@ export function CajaHoy() {
   async function cierre() {
     await cerrarCajaAuto();
     await load();
+    onCerrarCaja();
   }
 
   if (loading) return <p>Cargando...</p>;
