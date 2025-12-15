@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { CajaMovimiento } from "@prisma/client";
 
 export async function POST() {
   try {
@@ -7,22 +8,23 @@ export async function POST() {
     const todayISO = hoy.toISOString().slice(0, 10);
 
     // 1) Obtener movimientos del día
-    const movimientos = await prisma.cajaMovimiento.findMany({
-      where: {
-        fecha: {
-          gte: new Date(todayISO + "T00:00:00"),
-          lt: new Date(todayISO + "T23:59:59"),
+    const movimientos: CajaMovimiento[] =
+      await prisma.cajaMovimiento.findMany({
+        where: {
+          fecha: {
+            gte: new Date(todayISO + "T00:00:00"),
+            lt: new Date(todayISO + "T23:59:59"),
+          },
         },
-      },
-      orderBy: { fecha: "asc" },
-    });
+        orderBy: { fecha: "asc" },
+      });
 
     const totalIngresos = movimientos
-      .filter(m => m.tipo === "ingreso")
+      .filter((m) => m.tipo === "ingreso")
       .reduce((s, x) => s + Number(x.monto), 0);
 
     const totalEgresos = movimientos
-      .filter(m => m.tipo === "egreso")
+      .filter((m) => m.tipo === "egreso")
       .reduce((s, x) => s + Number(x.monto), 0);
 
     const saldoDia = totalIngresos - totalEgresos;
@@ -35,7 +37,7 @@ export async function POST() {
         totalEgresos,
         saldoDia,
         observaciones: null,
-        movimientos, // JSONB
+        movimientos: movimientos as any, // Json
       },
     });
 
