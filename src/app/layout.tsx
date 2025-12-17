@@ -81,7 +81,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 sm:flex-row sm:gap-6 sm:text-right
               "
             >
-              <span>Tel: 2920 248803</span>
+              <span>Tel: 2920248803</span>
 
               <span className="break-all sm:break-normal">
                 Email: ezequielagustinarce1@gmail.com
