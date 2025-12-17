@@ -61,7 +61,22 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </header>
 
 
-        <main className="max-w-5xl mx-auto p-4">{children}</main>
+        <main className="max-w-5xl mx-auto p-4 pb-20">{children}</main>
+
+        <footer className="fixed bottom-0 left-0 w-full bg-white border-t z-30">
+          <div className="max-w-5xl mx-auto px-4 py-4 text-sm text-slate-500 flex justify-between items-center">
+            <span>
+              © {new Date().getFullYear()} Ezequiel Arce. Todos los derechos reservados.
+            </span>
+
+            <div className="flex gap-6">
+              <span>Tel: 2920248803</span>
+              <span>Email: ezequielagustinarce1@gmail.com</span>
+            </div>
+          </div>
+        </footer>
+
+
       </body>
     </html>
   );
