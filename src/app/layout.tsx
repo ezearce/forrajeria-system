@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <img
                 src="/logo.png"
                 alt="Logo"
-                className="h-12 w-auto"
+                className="h-10 sm:h-12 max-w-[140px] w-auto object-contain"
               />
             </Link>
 
@@ -64,25 +64,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <main className="max-w-5xl mx-auto p-4 pb-24">{children}</main>
 
         <footer className="fixed bottom-0 left-0 w-full bg-white border-t z-30">
-          <div
-            className="
-              max-w-5xl mx-auto px-4 py-3 text-sm text-slate-500
-              flex flex-col gap-2
-              sm:flex-row sm:justify-between sm:items-center
-            "
-          >
+          <div className="max-w-5xl mx-auto px-4 py-3 text-sm text-slate-500 flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-center">
             <span className="text-center sm:text-left">
               © 2025 Ezequiel Arce
             </span>
 
-            <div
-              className="
-                flex flex-col gap-1 text-center
-                sm:flex-row sm:gap-6 sm:text-right
-              "
-            >
+            <div className="flex flex-col gap-1 text-center sm:flex-row sm:gap-6 sm:text-right">
               <span>Tel: 2920248803</span>
-
               <span className="break-all sm:break-normal">
                 Email: ezequielagustinarce1@gmail.com
               </span>
