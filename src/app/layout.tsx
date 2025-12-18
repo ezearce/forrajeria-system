@@ -19,9 +19,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="es" className="h-full">
       <body className="min-h-screen flex flex-col h-full bg-slate-50 text-slate-900 antialiased">
         <header className="bg-white shadow-sm sticky top-0 z-20">
-          <nav className="max-w-5xl mx-auto px-4 h-16 flex items-center gap-8">
+          <nav className="max-w-5xl mx-auto px-4 py-2 flex flex-wrap items-center gap-4">
+
             {/* LOGO */}
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2 shrink-0">
               <img
                 src="/logo.png"
                 alt="Logo"
@@ -30,7 +31,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </Link>
 
             {/* LINKS */}
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4 w-full justify-center sm:w-auto sm:justify-start">
               {links.map((link) => {
                 const isActive = pathname.startsWith(link.href);
 
